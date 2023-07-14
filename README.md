@@ -1,4 +1,4 @@
-# **Predicting the coding potential of** **sORFs in plant lncRNAs with pretrained BERT model** 
+# **A multi-granularity information-enhanced pre-training method for predicting the coding potential of sORFs in plant lncRNAs** 
 The codes and data here are used to predict the coding potential of lncRNA-sORFs. It will give researchers useful guidelines to discover peptides.
 
 ### Data folder:
