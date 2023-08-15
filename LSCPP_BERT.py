@@ -71,13 +71,13 @@ class sORFLSCPPBERTDataset3mer(torch.utils.data.Dataset):
         return len(self.all_token_ids)
 
 
-class BERTClassifier_notextCNN(nn.Module):
+class BERTClassifier(nn.Module):
     def __init__(self, lscppbert):
-        super(BERTClassifier_notextCNN, self).__init__()
+        super(BERTClassifier, self).__init__()
         self.encoder = lscppbert.encoder
         self.hidden = lscppbert.hidden
         self.output = nn.Linear(512, 2)
-        self.dropout = nn.Dropout(0.2)
+        self.dropout = nn.Dropout(0.3)
 
     def forward(self, inputs):
         tokens_X, segments_X, valid_len_x = inputs
@@ -86,13 +86,13 @@ class BERTClassifier_notextCNN(nn.Module):
         return out
 
 
-batch_size, max_len, num_workers = 32, 115, 0
+batch_size, max_len, num_workers = 32, 112, 0
 test_file = 'test.csv'
 device = d2l.try_gpu()
 _, vocab = d2l.load_pretraining_data(batch_size, max_len)
 
 net = torch.load('model/LSCPP_BERT.bin')
-max_len = 115
+max_len = 112
 
 
 test_set = read_sORF_data(test_file)
