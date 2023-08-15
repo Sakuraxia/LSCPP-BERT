@@ -14,14 +14,14 @@ In line 88, you can change the path of the test file for testing your own data.
 In line 92, this is the path of model file.
 
 ## Library dependency:
-Based on python3.6  
+Based on python 3.7.12  
 Python modules:  
 
 ```
-numpy
-torch
+numpy (1.21.6)
+torch (1.7.1)
 multiprocessing
-pandas
+pandas (1.3.5)
 os
 random
 math

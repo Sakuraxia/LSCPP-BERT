@@ -4,8 +4,6 @@ import pandas as pd
 import multiprocessing
 from torch import nn
 import os
-from sklearn.metrics import roc_auc_score
-from sklearn.metrics import matthews_corrcoef
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
@@ -71,9 +69,9 @@ class sORFLSCPPBERTDataset3mer(torch.utils.data.Dataset):
         return len(self.all_token_ids)
 
 
-class BERTClassifier(nn.Module):
+class BERTClassifier_notextCNN(nn.Module):
     def __init__(self, lscppbert):
-        super(BERTClassifier, self).__init__()
+        super(BERTClassifier_notextCNN, self).__init__()
         self.encoder = lscppbert.encoder
         self.hidden = lscppbert.hidden
         self.output = nn.Linear(512, 2)
