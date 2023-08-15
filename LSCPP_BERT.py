@@ -28,6 +28,20 @@ def tokenize_3mer(sORF_seqs):
         tokenuzed_sORF_seqs.append(temp)
     return tokenuzed_sORF_seqs
 
+class BERTClassifier_notextCNN(nn.Module):
+    def __init__(self, lscppbert):
+        super(BERTClassifier_notextCNN, self).__init__()
+        self.encoder = lscppbert.encoder
+        self.hidden = lscppbert.hidden
+        self.output = nn.Linear(512, 2)
+        self.dropout = nn.Dropout(0.3)
+
+    def forward(self, inputs):
+        tokens_X, segments_X, valid_len_x = inputs
+        encoded_X = self.encoder(tokens_X, segments_X, valid_len_x)
+        out = torch.sigmoid(self.output(self.hidden(encoded_X[:, 0, :])))
+        return out
+
 
 class sORFLSCPPBERTDataset3mer(torch.utils.data.Dataset):
     def __init__(self, dataset, max_len, vocab=None):
@@ -67,21 +81,6 @@ class sORFLSCPPBERTDataset3mer(torch.utils.data.Dataset):
 
     def __len__(self):
         return len(self.all_token_ids)
-
-
-class BERTClassifier_notextCNN(nn.Module):
-    def __init__(self, lscppbert):
-        super(BERTClassifier_notextCNN, self).__init__()
-        self.encoder = lscppbert.encoder
-        self.hidden = lscppbert.hidden
-        self.output = nn.Linear(512, 2)
-        self.dropout = nn.Dropout(0.3)
-
-    def forward(self, inputs):
-        tokens_X, segments_X, valid_len_x = inputs
-        encoded_X = self.encoder(tokens_X, segments_X, valid_len_x)
-        out = torch.sigmoid(self.output(self.hidden(encoded_X[:, 0, :])))
-        return out
 
 
 batch_size, max_len, num_workers = 32, 112, 0
