@@ -4,7 +4,7 @@ The codes and data here are used to predict the coding potential of lncRNA-sORFs
 ### Data folder:
 contains pretraining samples.  
 ### LSCPP_BERT.bin:
-is a model file.
+is a model file.  You need to download "LSCPP_BERT.bin" from (https://drive.google.com/file/d/1o7KZwG5fbGZd3K1LMYiD6qCOyOHEXU4m/view?usp=sharing) or (https://pan.baidu.com/s/18P3w7MQUBI49IEjCyf6C8Q?pwd=18p1). Then, you should move the file "LSCPP_BERT.bin" to the "model" folder
 
 ### LSCPP_BERT.py:
 You can run this file to test.
